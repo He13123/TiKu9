@@ -1,35 +1,28 @@
 package com.example.tiku9;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.ListView;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.tiku9.net.OkHttpLo;
-import com.example.tiku9.net.OkHttpTo;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
-import org.json.JSONObject;
+import com.google.android.material.navigation.NavigationView;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-public class MainActivity extends AppCompatActivity {
 
-    private List<ZHGL>zhgls = new ArrayList<>();
-
-    private CheckBox checkBox;
-    private Button bt;
-    private ListView listView;
-    private List_Adpter list_adpter;
-
+    private DrawerLayout dra;
+    private NavigationView nav;
+    private ImageView caidan;
+    private TextView title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,47 +30,66 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         initView();
 
-        getinformation();//获取信息
+        caidan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dra.openDrawer(GravityCompat.START);        //点击后以华东出现
+                nav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                        switch (menuItem.getItemId()) {
+                            case R.id.zhgl:
+                                Intent intent = new Intent(MainActivity.this, MainActivity2.class);
+                                startActivity(intent);
+                                break;
+                            case R.id.zh:
+                                Frag(new Fragment1());
+                                break;
+                            case R.id.zh2:
+                                Frag(new Fragment2());
+                                break;
+                        }
+                        dra.closeDrawer(GravityCompat.START);
+                        return false;
+                    }
+                });
+
+
+            }
+        });
+
 
     }
 
-    private void getinformation() {
-        Log.d("vvvvvvvvvvv", "setApter:2 ");
-        OkHttpTo okHttpTo = new OkHttpTo();
-        okHttpTo.setUrl("get_vehicle")
-                .setJsonObject("UserName","user1")
-                .setOkHttpLo(new OkHttpLo() {
-                    @Override
-                    public void onResponse(JSONObject jsonObject) {
-                        //GOSN第三方
-                        Log.d("vvvvvvvvvvv", "setApter:2 ");
-                        zhgls.addAll((Collection<? extends ZHGL>) new Gson().fromJson(jsonObject.optJSONArray("ROWS_DETAIL").toString(),
-                                new TypeToken<List<ZHGL>>(){}.getType()));
-                        setApter();
-                    }
-
-                    @Override
-                    public void OnFailure(IOException obj) {
-
-                    }
-                }).start();
-    }
-
-    private void setApter() {
-        Log.d("vvvvvvvvvvv", "setApter:2 ");
-        if (list_adpter == null){
-            list_adpter = new List_Adpter(MainActivity.this,zhgls);
-            listView.setAdapter(list_adpter);
-        }else {
-            list_adpter.notifyDataSetChanged();
-        }
-
+    /**
+     *
+     * @getSupportFragmentManager 碎片的管理者
+     *
+     * @FragmentTransaction 处理碎片的人
+     *
+     * @replace 取代管理者手中当前的碎片
+     * 
+     * @commit 提交
+     */
+    private void Frag(Fragment fragment) {
+        FragmentTransaction fragmentTransition = getSupportFragmentManager().beginTransaction();
+        fragmentTransition.replace(R.id.fragment, fragment).commit();
     }
 
     private void initView() {
-        bt = findViewById(R.id.chongzhi);
-        checkBox = findViewById(R.id.ck);
-        listView = findViewById(R.id.lv);
+        dra = findViewById(R.id.dra);
+        nav = findViewById(R.id.nav);
+        caidan = findViewById(R.id.caidan);
+        title = findViewById(R.id.title);
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.title:
+                title.setText("账户管理2");
+                break;
+        }
+
+    }
 }

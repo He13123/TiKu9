@@ -1,48 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:id="@+id/dra">
+
     <LinearLayout
-        android:background="#4C29EC"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <ImageView
-            android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <LinearLayout
+            android:background="#4C29EC"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/change">
-        </ImageView>
-        <TextView
-            android:textColor="#fff"
-            android:layout_width="wrap_content"
-            android:layout_marginLeft="450dp"
-            android:layout_height="wrap_content"
-            android:text="账户管理"
-            android:textSize="50dp"></TextView>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="批量充值"
-            android:textSize="35dp"
-            android:textColor="#fff"
-            android:layout_marginLeft="150dp"></TextView>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="35dp"
-            android:textColor="#fff"
-            android:layout_marginLeft="80dp"
-            android:text="充值记录"></TextView>
+            android:orientation="horizontal"
+            >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/caidan"
+                android:src="@drawable/change">
+            </ImageView>
+
+            <TextView
+                android:textColor="#fff"
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="450dp"
+                android:layout_height="wrap_content"
+                android:text="账户管理"
+                android:id="@+id/title"
+                android:textSize="50dp"></TextView>
+
+
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/fragment"
+            />
+
     </LinearLayout>
 
 
-    <ListView
-        android:id="@+id/lv"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <com.google.android.material.navigation.NavigationView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/nav"
+        app:menu="@menu/main"
+        android:layout_gravity="start"
+        >
+    </com.google.android.material.navigation.NavigationView>
 
-    </ListView>
 
-</LinearLayout>
+</androidx.drawerlayout.widget.DrawerLayout>
