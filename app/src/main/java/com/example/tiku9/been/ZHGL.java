@@ -1,4 +1,4 @@
-package com.example.tiku9;
+package com.example.tiku9.been;
 
 public class ZHGL {
 
@@ -13,7 +13,16 @@ public class ZHGL {
      *             "user": "user1"
      */
 
-    private String id,number,owner,balance,plate,brand,user;
+    private String id;
+    private String number;
+    private String owner;
+
+
+    private String plate;
+    private String brand;
+    private String user;
+    private int balance;
+    private boolean fuxuan;
 
     public String getId() {
         return id;
@@ -39,14 +48,6 @@ public class ZHGL {
         this.owner = owner;
     }
 
-    public String getBalance() {
-        return balance;
-    }
-
-    public void setBalance(String balance) {
-        this.balance = balance;
-    }
-
     public String getPlate() {
         return plate;
     }
@@ -69,5 +70,21 @@ public class ZHGL {
 
     public void setUser(String user) {
         this.user = user;
+    }
+
+    public int getBalance() {
+        return balance;
+    }
+
+    public void setBalance(int balance) {
+        this.balance = balance;
+    }
+
+    public boolean isFuxuan() {
+        return fuxuan;
+    }
+
+    public void setFuxuan(boolean fuxuan) {
+        this.fuxuan = fuxuan;
     }
 }

@@ -2,10 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
 
-    <item android:id="@+id/zhgl"
-        android:title="账户管理"
-        />
-
+    <item android:title="账户管理"
+        android:id="@+id/zhgl"></item>
+    <item android:title="个人中心"
+        android:id="@+id/grzx"></item>
+    <item android:title="公交查询"
+        android:id="@+id/gjcx"></item>
     <item android:id="@+id/zh"
         android:title="12"
         />

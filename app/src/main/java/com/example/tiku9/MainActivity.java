@@ -14,7 +14,10 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.tiku9.been.YZ;
 import com.google.android.material.navigation.NavigationView;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -30,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         initView();
 
+
         caidan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -42,6 +46,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 Intent intent = new Intent(MainActivity.this, MainActivity2.class);
                                 startActivity(intent);
                                 break;
+                            case R.id.grzx:
+                                Intent intent1 = new Intent(MainActivity.this,GRZX.class);
+                                startActivity(intent1);
+                                break;
+                            case R.id.gjcx:
+                                Intent intent2 = new Intent(MainActivity.this,X_GJCX.class);
+                                startActivity(intent2);
                             case R.id.zh:
                                 Frag(new Fragment1());
                                 break;

@@ -34,9 +34,6 @@
                 android:text="账户管理"
                 android:id="@+id/title"
                 android:textSize="50dp"></TextView>
-
-
-
         </LinearLayout>
 
         <FrameLayout
@@ -53,8 +50,7 @@
         android:layout_height="match_parent"
         android:id="@+id/nav"
         app:menu="@menu/main"
-        android:layout_gravity="start"
-        >
+        android:layout_gravity="start">
     </com.google.android.material.navigation.NavigationView>
 
 
